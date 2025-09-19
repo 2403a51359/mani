@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manikanta - Portfolio</title>
+  <script src="https://kit.fontawesome.com/3f8058565a.js" crossorigin="anonymous"></script>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #0d0d0d;
+      color: #fff;
+    }
+
+    /* Keyframes */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Header */
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url("https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1600") no-repeat center center/cover;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .logo span {
+      color: #e50914;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+      position: relative;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      height: 2px;
+      width: 0;
+      background: #e50914;
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .header-text {
+      animation: fadeInUp 1s ease forwards;
+    }
+    .header-text h1 {
+      font-size: 50px;
+    }
+    .header-text h1 span {
+      color: #e50914;
+    }
+    .header-text p {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+    .btn {
+      background: #e50914;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: #fff;
+      color: #e50914;
+    }
+
+    /* About */
+    #about {
+      padding: 60px 0;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-play-state: paused;
+    }
+    .about-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .about-text {
+      flex: 1;
+      padding: 20px;
+    }
+    .about-img {
+      flex: 1;
+      text-align: center;
+    }
+    .about-img img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #e50914;
+      transition: transform 0.3s ease;
+    }
+    .about-img img:hover {
+      transform: scale(1.05);
+    }
+    .sub-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .sub-title span {
+      color: #e50914;
+    }
+
+    /* Services */
+    #services {
+      padding: 60px 0;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-play-state: paused;
+    }
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: #1a1a1a;
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .service-card img:hover {
+      transform: scale(1.05);
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #e50914;
+    }
+    .service-card h2 {
+      margin-bottom: 10px;
+      color: #e50914;
+    }
+
+    /* Contact */
+    #contact {
+      padding: 60px 0;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-play-state: paused;
+    }
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .contact-left, .contact-right {
+      flex: 1;
+    }
+    .contact-left p {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+    .contact-left i {
+      color: #e50914;
+      margin-right: 10px;
+    }
+    .social-icons a {
+      color: #fff;
+      font-size: 22px;
+      margin-right: 15px;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: #e50914;
+    }
+    .contact-right form {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-right input, .contact-right textarea {
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+    }
+    .contact-right input:focus, .contact-right textarea:focus {
+      border: 2px solid #e50914;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-bottom: 20px;
+      color: #aaa;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-flex, .row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="overlay"></div>
+    <div class="container">
+      <nav>
+        <h2 class="logo"><span>Gadamalla Manikanta</span></h2>
+        <ul>
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-text">
+        <h1>Hello, I’m <span>Manikanta</span></h1>
+        <p>Computer Science Student </p>
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container about-flex">
+      <div class="about-text">
+        <h1 class="sub-title">About <span>Me</span></h1>
+        <p>
+    <p>
+    I am a passionate and goal-oriented Computer Science student with a strong interest in web development and problem-solving.
+    I specialize in HTML, CSS, JavaScript, Python, C, and have experience working with modern frameworks. I enjoy building creative,
+    functional websites and continuously expanding my technical knowledge. Currently pursuing my B.Tech in Computer Science and Engineering
+    at SR University, I focus on core subjects like Data Structures, Object-Oriented Programming, and Database Management Systems.
+  </p>
+
+  <h2>Education</h2>
+
+  <h3>Bachelor of Technology (B.Tech) – Computer Science and Engineering</h3>
+  <p>
+    <strong>SR University, Ananthasagar</strong><br>
+    2024 – 2028 (Currently in 2nd Year)
+  </p>
+  <p><strong>Key Areas of Study:</strong></p>
+  <ul>
+    <li>Data Structures and Algorithms</li>
+    <li>Programming in C & Python</li>
+    <li>Object-Oriented Programming</li>
+    <li>Web Development</li>
+    <li>Database Management Systems (DBMS)</li>
+  </ul>
+
+  <h3>Intermediate (MPC Stream)</h3>
+  <p>
+    <strong>Alphores Junior College, Karimnagar</strong><br>
+    Completed in 2024<br>
+    Subjects: Mathematics, Physics, Chemistry
+  </p>
+
+  <h3>10th Grade (SSC)</h3>
+  <p>
+    <strong>Tetrahedron Model School, Huzurabad</strong><br>
+    Completed in 2022
+  </p>
+        </p>
+      </div>
+      <div class="about-img">
+        <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Coding setup">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+    <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h1 class="sub-title">Services</h1>
+      <div class="services-list">
+        <div class="service-card">
+          <img src="https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Web Development">
+          <h2>Web Development</h2>
+          <p>I create responsive and user-friendly websites with clean design.</p>
+        </div>
+        <div class="service-card">
+          <img src="https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=600" alt="App Design">
+          <h2>App Design</h2>
+          <p>Design and development of mobile-friendly applications with smooth UI/UX.</p>
+        </div>
+        <div class="service-card">
+          <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Creative Ideas">
+          <h2>Creative Solutions</h2>
+          <p>Smart coding solutions tailored to real-world problems with innovation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h1 class="sub-title">Contact Me</h1>
+      <div class="row">
+        <div class="contact-left">
+          <p><i class="fa-regular fa-envelope"></i> 2403a51359@sru.edu.in</p>
+          <p><i class="fa-brands fa-linkedin"></i>linkedin.com/in/manikanta-gadamalla
+</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="www.linkedin.com/in/manikanta-gadamalla"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="6" placeholder="Your Message"></textarea>
+            <button type="submit" class="btn">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>© 2025 Your Name | Made with ❤️</p>
+    </footer>
+  </section>
+
+  <!-- Scroll Reveal Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          entry.target.style.opacity = '1';
+          observer.unobserve(entry.target); // Animate only once
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('#about, #services, #contact').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
+
