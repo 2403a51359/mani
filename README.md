@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,18 +17,17 @@
     body {
       background: #0d0d0d;
       color: #fff;
+      line-height: 1.6;
     }
 
     /* Keyframes */
     @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 15px #007bff; }
+      50% { box-shadow: 0 0 25px #00d4ff; }
     }
 
     /* Header */
@@ -40,11 +39,12 @@
       text-align: center;
       background: url("https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1600") no-repeat center center/cover;
       position: relative;
+      overflow: hidden;
     }
     .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: linear-gradient(to bottom right, rgba(0,123,255,0.7), rgba(0,0,0,0.7));
     }
     .container {
       width: 90%;
@@ -63,9 +63,10 @@
       font-size: 28px;
       font-weight: bold;
       color: #fff;
+      text-shadow: 0 0 10px #007bff;
     }
     .logo span {
-      color: #e50914;
+      color: #00d4ff;
     }
     nav ul {
       display: flex;
@@ -79,6 +80,7 @@
       color: #fff;
       font-size: 18px;
       position: relative;
+      transition: 0.3s;
     }
     nav ul li a::after {
       content: '';
@@ -87,8 +89,11 @@
       bottom: -5px;
       height: 2px;
       width: 0;
-      background: #e50914;
+      background: #00d4ff;
       transition: width 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #00d4ff;
     }
     nav ul li a:hover::after {
       width: 100%;
@@ -99,40 +104,54 @@
     }
     .header-text h1 {
       font-size: 50px;
+      text-shadow: 0 0 10px rgba(0,123,255,0.7);
     }
     .header-text h1 span {
-      color: #e50914;
+      color: #00d4ff;
     }
     .header-text p {
       font-size: 20px;
       margin: 20px 0;
     }
     .btn {
-      background: #e50914;
+      background: linear-gradient(45deg, #007bff, #00d4ff);
       color: #fff;
       padding: 12px 25px;
-      border-radius: 25px;
+      border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s ease;
+      transition: 0.4s ease;
       display: inline-block;
+      box-shadow: 0 0 15px rgba(0,123,255,0.7);
     }
     .btn:hover {
       background: #fff;
-      color: #e50914;
+      color: #007bff;
+      transform: scale(1.05);
     }
 
-    /* About */
-    #about {
+    /* Sections base */
+    section {
       padding: 60px 0;
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
       animation-play-state: paused;
     }
+    .sub-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .sub-title span {
+      color: #00d4ff;
+    }
+
+    /* About */
     .about-flex {
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
+      align-items: center;
     }
     .about-text {
       flex: 1;
@@ -145,37 +164,27 @@
     .about-img img {
       max-width: 100%;
       border-radius: 15px;
-      box-shadow: 0 0 20px #e50914;
-      transition: transform 0.3s ease;
+      box-shadow: 0 0 20px #007bff;
+      transition: transform 0.4s ease;
+      animation: glowPulse 3s infinite;
     }
     .about-img img:hover {
       transform: scale(1.05);
     }
-    .sub-title {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-    .sub-title span {
-      color: #e50914;
-    }
 
     /* Services */
-    #services {
-      padding: 60px 0;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      animation-play-state: paused;
-    }
     .services-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
+      margin-top: 30px;
     }
     .service-card {
       background: #1a1a1a;
       border-radius: 15px;
       padding: 20px;
       transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
     }
     .service-card img {
       width: 100%;
@@ -190,20 +199,14 @@
     }
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 0 20px #e50914;
+      box-shadow: 0 0 25px #007bff;
     }
     .service-card h2 {
       margin-bottom: 10px;
-      color: #e50914;
+      color: #00d4ff;
     }
 
     /* Contact */
-    #contact {
-      padding: 60px 0;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      animation-play-state: paused;
-    }
     .row {
       display: flex;
       flex-wrap: wrap;
@@ -217,17 +220,17 @@
       margin-bottom: 15px;
     }
     .contact-left i {
-      color: #e50914;
+      color: #00d4ff;
       margin-right: 10px;
     }
     .social-icons a {
       color: #fff;
       font-size: 22px;
       margin-right: 15px;
-      transition: color 0.3s;
+      transition: 0.3s;
     }
     .social-icons a:hover {
-      color: #e50914;
+      color: #00d4ff;
     }
     .contact-right form {
       display: flex;
@@ -242,21 +245,27 @@
       border: none;
     }
     .contact-right input:focus, .contact-right textarea:focus {
-      border: 2px solid #e50914;
+      border: 2px solid #00d4ff;
+      outline: none;
     }
 
     /* Footer */
     footer {
       text-align: center;
       margin-top: 40px;
-      padding-bottom: 20px;
+      padding: 20px;
+      background: linear-gradient(to right, #1a1a1a, #0d0d0d);
       color: #aaa;
+      border-top: 2px solid #007bff;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
       .about-flex, .row {
         flex-direction: column;
+      }
+      .header-text h1 {
+        font-size: 36px;
       }
     }
   </style>
@@ -278,7 +287,7 @@
       </nav>
       <div class="header-text">
         <h1>Hello, I’m <span>Manikanta</span></h1>
-        <p>Computer Science Student </p>
+        <p>Computer Science Student</p>
         <a href="#contact" class="btn">Contact Me</a>
       </div>
     </div>
@@ -290,42 +299,27 @@
       <div class="about-text">
         <h1 class="sub-title">About <span>Me</span></h1>
         <p>
-    <p>
-    I am a passionate and goal-oriented Computer Science student with a strong interest in web development and problem-solving.
-    I specialize in HTML, CSS, JavaScript, Python, C, and have experience working with modern frameworks. I enjoy building creative,
-    functional websites and continuously expanding my technical knowledge. Currently pursuing my B.Tech in Computer Science and Engineering
-    at SR University, I focus on core subjects like Data Structures, Object-Oriented Programming, and Database Management Systems.
-  </p>
-
-  <h2>Education</h2>
-
-  <h3>Bachelor of Technology (B.Tech) – Computer Science and Engineering</h3>
-  <p>
-    <strong>SR University, Ananthasagar</strong><br>
-    2024 – 2028 (Currently in 2nd Year)
-  </p>
-  <p><strong>Key Areas of Study:</strong></p>
-  <ul>
-    <li>Data Structures and Algorithms</li>
-    <li>Programming in C & Python</li>
-    <li>Object-Oriented Programming</li>
-    <li>Web Development</li>
-    <li>Database Management Systems (DBMS)</li>
-  </ul>
-
-  <h3>Intermediate (MPC Stream)</h3>
-  <p>
-    <strong>Alphores Junior College, Karimnagar</strong><br>
-    Completed in 2024<br>
-    Subjects: Mathematics, Physics, Chemistry
-  </p>
-
-  <h3>10th Grade (SSC)</h3>
-  <p>
-    <strong>Tetrahedron Model School, Huzurabad</strong><br>
-    Completed in 2022
-  </p>
+          I am a passionate and goal-oriented Computer Science student with a strong interest in web development and problem-solving.
+          I specialize in HTML, CSS, JavaScript, Python, C, and have experience working with modern frameworks. I enjoy building creative,
+          functional websites and continuously expanding my technical knowledge.
         </p>
+
+        <h2>Education</h2>
+        <h3>Bachelor of Technology (B.Tech) – Computer Science and Engineering</h3>
+        <p><strong>SR University, Ananthasagar</strong><br>2024 – 2028 (Currently in 2nd Year)</p>
+        <ul>
+          <li>Data Structures and Algorithms</li>
+          <li>Programming in C & Python</li>
+          <li>Object-Oriented Programming</li>
+          <li>Web Development</li>
+          <li>Database Management Systems (DBMS)</li>
+        </ul>
+
+        <h3>Intermediate (MPC Stream)</h3>
+        <p><strong>Alphores Junior College, Karimnagar</strong><br>Completed in 2024</p>
+
+        <h3>10th Grade (SSC)</h3>
+        <p><strong>Tetrahedron Model School, Huzurabad</strong><br>Completed in 2022</p>
       </div>
       <div class="about-img">
         <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Coding setup">
@@ -334,10 +328,9 @@
   </section>
 
   <!-- Services -->
-    <!-- Services -->
   <section id="services">
     <div class="container">
-      <h1 class="sub-title">Services</h1>
+      <h1 class="sub-title">My <span>Services</span></h1>
       <div class="services-list">
         <div class="service-card">
           <img src="https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Web Development">
@@ -361,17 +354,16 @@
   <!-- Contact -->
   <section id="contact">
     <div class="container">
-      <h1 class="sub-title">Contact Me</h1>
+      <h1 class="sub-title">Contact <span>Me</span></h1>
       <div class="row">
         <div class="contact-left">
           <p><i class="fa-regular fa-envelope"></i> 2403a51359@sru.edu.in</p>
-          <p><i class="fa-brands fa-linkedin"></i>linkedin.com/in/manikanta-gadamalla
-</p>
+          <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/manikanta-gadamalla" target="_blank" style="color:#00d4ff;">LinkedIn</a></p>
           <div class="social-icons">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="www.linkedin.com/in/manikanta-gadamalla"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/manikanta-gadamalla" target="_blank"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
         <div class="contact-right">
@@ -396,16 +388,15 @@
         if (entry.isIntersecting) {
           entry.target.style.animationPlayState = 'running';
           entry.target.style.opacity = '1';
-          observer.unobserve(entry.target); // Animate only once
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('#about, #services, #contact').forEach(section => {
+    document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
   </script>
 
 </body>
 </html>
-
